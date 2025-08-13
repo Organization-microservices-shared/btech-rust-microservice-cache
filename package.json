@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Caché ultrarrápida para microservicios creados con Rust",
   "main": "index.js",
-  "repository": "git@github.com:napi-rs/package-template.git",
+  "repository": "https://github.com/Organization-microservices-shared/btech-rust-microservice-cache.git",
   "license": "MIT",
   "keywords": [
     "napi-rs",
