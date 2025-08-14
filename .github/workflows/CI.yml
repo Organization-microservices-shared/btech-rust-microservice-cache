@@ -122,8 +122,8 @@ jobs:
         with:
           name: bindings-${{ matrix.settings.target }}
           path: |
-            *.node
-            *.wasm
+            ${{ env.APP_NAME }}.*.node
+            ${{ env.APP_NAME }}.*.wasm
           if-no-files-found: error
   test-macOS-windows-binding:
     name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
@@ -165,7 +165,7 @@ jobs:
         run: ls -R .
         shell: bash
       - name: Test bindings
-        run: node test
+        run: yarn test
   test-linux-binding:
     name: Test ${{ matrix.target }} - node@${{ matrix.node }}
     needs:
@@ -175,8 +175,9 @@ jobs:
       matrix:
         target:
           - x86_64-unknown-linux-gnu
-          - aarch64-unknown-linux-gnu
-          - aarch64-unknown-linux-musl
+          # Temporalmente deshabilitado por problemas de emulación en CI
+          # - aarch64-unknown-linux-gnu
+          # - aarch64-unknown-linux-musl
         node:
           - '20'
           - '22'
@@ -228,7 +229,7 @@ jobs:
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
         if: ${{ contains(matrix.target, 'armv7') }}
       - name: Test bindings
-        run: node test
+        run: yarn test
   publish:
     name: Publish
     runs-on: ubuntu-latest
