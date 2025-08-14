@@ -164,27 +164,6 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
-      - name: Debug and fix binding names
-        run: |
-          echo "=== Files after download ==="
-          ls -la *.node 2>/dev/null || echo "No .node files found"
-          echo "=== All files ==="
-          find . -name "*.node" -type f 2>/dev/null || echo "No .node files found anywhere"
-          if [ -f "${APP_NAME}.node" ]; then
-            echo "Found generic binding, creating platform-specific binding"
-            cp "${APP_NAME}.node" "${APP_NAME}.${{ matrix.settings.target }}.node"
-            ls -la *.node
-          fi
-          expected_file="${APP_NAME}.${{ matrix.settings.target }}.node"
-          if [ ! -f "$expected_file" ]; then
-            echo "ERROR: Expected file $expected_file not found"
-            echo "Available files:"
-            ls -la
-            exit 1
-          fi
-        shell: bash
-        env:
-          APP_NAME: btech-rust-microservice-cache
       - name: Test bindings
         run: yarn test
   test-linux-binding:
@@ -241,27 +220,6 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
-      - name: Debug and fix binding names
-        run: |
-          echo "=== Files after download ==="
-          ls -la *.node || echo "No .node files found"
-          echo "=== All files ==="
-          find . -name "*.node" -type f
-          if [ -f "${APP_NAME}.node" ]; then
-            echo "Found generic binding, creating platform-specific binding"
-            cp "${APP_NAME}.node" "${APP_NAME}.${{ matrix.target }}.node"
-            ls -la *.node
-          fi
-          expected_file="${APP_NAME}.${{ matrix.target }}.node"
-          if [ ! -f "$expected_file" ]; then
-            echo "ERROR: Expected file $expected_file not found"
-            echo "Available files:"
-            ls -la
-            exit 1
-          fi
-        shell: bash
-        env:
-          APP_NAME: btech-rust-microservice-cache
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         if: ${{ contains(matrix.target, 'armv7') }}
