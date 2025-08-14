@@ -11,6 +11,6 @@ export declare class MicroserviceCache {
   get(key: string): string | null
   delete(key: string): boolean
   getStats(): string
-  getAllKeys(): Array<string>
+  keys(): Array<string>
   flush(): number
 }

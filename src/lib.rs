@@ -160,7 +160,7 @@ impl MicroserviceCache {
   }
 
   #[napi]
-  pub fn get_all_keys(&self) -> Vec<String> {
+  pub fn keys(&self) -> Vec<String> {
     let mut keys = Vec::new();
 
     for entry in self.storage.iter() {
