@@ -2,19 +2,23 @@
 [package]
 authors = ["LongYinan <lynweklm@gmail.com>"]
 edition = "2021"
-name = "btech_rust_microservice_cache"
+name    = "btech_rust_microservice_cache"
 version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-napi = "3.0.0"
+dashmap     = "6.1.0"
+napi        = "3.0.0"
 napi-derive = "3.0.0"
+serde       = { version = "1.0.219", features = ["derive"] }
+serde_json  = "1.0.142"
+sha2        = "0.10.9"
 
 [build-dependencies]
 napi-build = "2"
 
 [profile.release]
-lto = true
+lto   = true
 strip = "symbols"
