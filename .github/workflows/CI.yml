@@ -219,6 +219,11 @@ jobs:
           path: .
       - name: List packages
         run: ls -R .
+      - name: Build native module
+        run: yarn build --target ${{ matrix.target }}
+        if: ${{ !contains(matrix.target, 'aarch64') }}
+      - name: Test bindings
+        run: yarn test
         shell: bash
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -227,8 +232,6 @@ jobs:
           platforms: all
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
         if: ${{ contains(matrix.target, 'armv7') }}
-      - name: Test bindings
-        run: yarn test
   publish:
     name: Publish
     runs-on: ubuntu-latest
