@@ -1,8 +1,9 @@
 use dashmap::DashMap;
+use fnv::FnvHasher;
 use napi::bindgen_prelude::*;
 use napi_derive::napi;
 use serde::{Deserialize, Serialize};
-use sha2::{Digest, Sha256};
+use std::hash::{Hash, Hasher};
 use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 
@@ -181,9 +182,9 @@ impl MicroserviceCache {
   }
 
   fn hash_key(&self, key: &str) -> String {
-    let mut hasher = Sha256::new();
-    hasher.update(key.as_bytes());
-    format!("{:x}", hasher.finalize())
+    let mut hasher = FnvHasher::default();
+    key.hash(&mut hasher);
+    format!("{:x}", hasher.finish())
   }
 
   fn increment_stat(&self, stat_name: &str) {
