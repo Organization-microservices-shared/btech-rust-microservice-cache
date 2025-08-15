@@ -1,5 +1,5 @@
 {
-  "name": "btech-rust-microservice-cache",
+  "name": "@organization-microservices-shared/btech-rust-microservice-cache",
   "version": "1.0.0",
   "description": "Caché ultrarrápida para microservicios creados con Rust",
   "main": "index.js",
@@ -11,11 +11,14 @@
     "N-API",
     "Rust",
     "node-addon",
-    "node-addon-api"
+    "node-addon-api",
+    "cache",
+    "microservices"
   ],
   "files": [
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "*.node"
   ],
   "napi": {
     "binaryName": "btech-rust-microservice-cache",
@@ -34,7 +37,7 @@
     "node": ">= 6.14.2 < 7 || >= 8.11.2 < 9 || >= 9.11.0 < 10 || >= 10.0.0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "scripts": {
@@ -52,7 +55,8 @@
     "test:watch": "ava --watch",
     "test:verbose": "ava --verbose",
     "version": "napi version",
-    "prepare": "husky"
+    "prepare": "husky",
+    "publish:github": "npm publish --registry=https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@emnapi/core": "^1.4.5",
@@ -105,5 +109,15 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "optionalDependencies": {
+    "@organization-microservices-shared/btech-rust-microservice-cache-win32-x64-msvc": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-darwin-x64": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-linux-x64-gnu": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-linux-arm64-gnu": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-darwin-arm64": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-android-arm64": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-linux-arm64-musl": "1.0.0",
+    "@organization-microservices-shared/btech-rust-microservice-cache-win32-arm64-msvc": "1.0.0"
+  }
 }
