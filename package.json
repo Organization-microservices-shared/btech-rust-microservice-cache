@@ -109,15 +109,5 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "packageManager": "yarn@4.9.2",
-  "optionalDependencies": {
-    "@organization-microservices-shared/btech-rust-microservice-cache-win32-x64-msvc": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-darwin-x64": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-linux-x64-gnu": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-linux-arm64-gnu": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-darwin-arm64": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-android-arm64": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-linux-arm64-musl": "1.0.0",
-    "@organization-microservices-shared/btech-rust-microservice-cache-win32-arm64-msvc": "1.0.0"
-  }
+  "packageManager": "yarn@4.9.2"
 }
