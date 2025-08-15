@@ -36,7 +36,10 @@ jobs:
         with:
           components: clippy, rustfmt
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn config set --json supportedArchitectures.cpu '["current", "x64", "arm64"]'
+          yarn config set --json supportedArchitectures.os '["current", "linux", "win32", "darwin"]'
+          yarn install
       - name: Oxlint
         run: yarn lint
       - name: Cargo fmt
@@ -113,7 +116,10 @@ jobs:
         if: ${{ matrix.settings.setup }}
         shell: bash
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn config set --json supportedArchitectures.cpu '["current", "x64", "arm64"]'
+          yarn config set --json supportedArchitectures.os '["current", "linux", "win32", "darwin"]'
+          yarn install
       - name: Build
         run: ${{ matrix.settings.build }}
         shell: bash
@@ -155,7 +161,10 @@ jobs:
           cache: yarn
           architecture: ${{ matrix.settings.architecture }}
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn config set --json supportedArchitectures.cpu '["current", "x64", "arm64"]'
+          yarn config set --json supportedArchitectures.os '["current", "linux", "win32", "darwin"]'
+          yarn install
       - name: Download artifacts
         uses: actions/download-artifact@v5
         with:
@@ -248,7 +257,10 @@ jobs:
           node-version: 22
           cache: yarn
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn config set --json supportedArchitectures.cpu '["current", "x64", "arm64"]'
+          yarn config set --json supportedArchitectures.os '["current", "linux", "win32", "darwin"]'
+          yarn install
       - name: create npm dirs
         run: yarn napi create-npm-dirs
       - name: Download all artifacts
